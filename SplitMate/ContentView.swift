@@ -34,13 +34,20 @@ struct ContentView: View {
                     TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currencyCode ?? "NZD"))
                         .keyboardType(.decimalPad)
                         .focused($amountIsFocused)
-                    
-                    Picker("Number of people?", selection: $numberOfPeople) {
+                } header: {
+                    Text("AMOUNT TO PAY")
+                }
+                
+                Section {
+                    Picker("", selection: $numberOfPeople) {
                         ForEach(2..<100) {
-                            Text("\($0) people")
+                            Text("A total of \($0) people")
                         }
                     }
+                } header: {
+                    Text("Split between")
                 }
+                
                 Section {
                     Picker("Tip percentage", selection: $tipPercentage) {
                         ForEach(tipPercentages, id: \.self) {
